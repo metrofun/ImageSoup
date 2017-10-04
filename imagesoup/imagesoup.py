@@ -146,11 +146,10 @@ class ImageSoup():
     def get_images_results(self, images_data):
         results = []
         for image in images_data:
-            URL = json.loads(image.text)['ou']
-            results.append(ImageResult(URL))
+            results.append(json.loads(image.text))
         return results
 
-    def search(self, query, image_size=None, aspect_ratio=None, n_images=100):
+    def search(self, query, image_size=None, aspect_ratio=None, n_images=100, image_type=None):
         FIRST_SEARCH_RESULT_PAGE = 0
         RESULTS_PER_PAGE = 100  # Returned by Google Images
 
@@ -160,7 +159,7 @@ class ImageSoup():
         for page_number in range(FIRST_SEARCH_RESULT_PAGE,
                                  int(LAST_SEARCH_RESULT_PAGE)):
             URL = parameters.query_builder(query, image_size, aspect_ratio,
-                                           page_number)
+                                           page_number, image_type)
             HTML = self.get_search_result_page(URL)
             images_data = self.get_images_data_from_HTML(HTML)
             if len(images_data) == 0:  # end of results. stop interating

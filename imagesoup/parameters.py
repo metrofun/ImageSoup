@@ -34,18 +34,24 @@ def image_size_parameter(option):
     else:
         return IMAGE_SIZE_PARAM + ':' + IMAGE_SIZE_OPTIONS[option]
 
+def image_type_parameter(option):
+    if not option:
+        return None
 
-def image_aspect_parameters(aspect_ratio, image_size):
-    if any([aspect_ratio, image_size]) is False:
+    IMAGE_TYPE_PARAM = 'ift'
+    return IMAGE_TYPE_PARAM + ':' + option
+
+def image_aspect_parameters(aspect_ratio, image_size, image_type):
+    if any([aspect_ratio, image_size, image_type]) is False:
         return None
     else:
         IMAGE_RELATED = 'tbs='
-        values = filter(lambda x: x is not None, [aspect_ratio, image_size])
+        values = filter(lambda x: x is not None, [aspect_ratio, image_size, image_type])
         options = ','.join(list(values))
         return '{}{}'.format(IMAGE_RELATED, options)
 
 
-def query_builder(query, image_size=None, aspect_ratio=None, page_number=0):
+def query_builder(query, image_size=None, aspect_ratio=None, page_number=0, image_type=None, ):
     if query is None:
         raise ValueError('query must have a value.')
 
@@ -67,7 +73,8 @@ def query_builder(query, image_size=None, aspect_ratio=None, page_number=0):
     # Add image aspects parameters
     iar = aspect_ratio_paramenter(aspect_ratio)
     isz = image_size_parameter(image_size)
-    image_aspect_param = image_aspect_parameters(iar, isz)
+    itp = image_type_parameter(image_type)
+    image_aspect_param = image_aspect_parameters(iar, isz, itp)
     if image_aspect_param is not None:
         URL = '&'.join([URL, image_aspect_param])
 
