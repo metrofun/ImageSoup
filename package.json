@@ -1,0 +1,27 @@
+{
+  "name": "imagesoup",
+  "version": "1.0.0",
+  "description": "ImageSoup: Image Searching for Humans =====================================",
+  "main": "minimize.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "gumbo-parser": "^0.3.0",
+    "svgo": "^0.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metrofun/ImageSoup.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/metrofun/ImageSoup/issues"
+  },
+  "homepage": "https://github.com/metrofun/ImageSoup#readme"
+}

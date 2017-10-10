@@ -10,3 +10,5 @@ imagesoup.egg-info/
 *.swp
 *.egg
 env/
+svg
+svg-min
